@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Stroke Analysis | CS 216</title>
+    <style>
+        /* Add your CSS styles here */
+    </style>
+</head>
+<body>
+    <h1>Stroke Prediction</h1>
+    <form method="post" action="{{ url_for('result') }}" id="stroke_prediction">
+        <label for="gender">Gender:</label><br>
+        <input type="radio" name="gender" value="male" checked> Male<br>
+        <input type="radio" name="gender" value="female"> Female<br>
+        <input type="radio" name="gender" value="other"> Other<br>
+        <br>
+
+        <label for="age">Age:</label><br>
+        <input type="number" name="age" min="0" max="120"><br>
+        <br>
+
+        <label for="isHypertension">Is Hypertension:</label><br>
+        <input type="checkbox" name="isHypertension" value="yes"> Yes<br>
+        <br>
+
+        <label for="hasHeartDisease">Has Heart Disease:</label><br>
+        <input type="checkbox" name="hasHeartDisease" value="yes"> Yes<br>
+        <br>
+
+        <label for="isMarried">Is Married:</label><br>
+        <input type="radio" name="isMarried" value="yes" checked> Yes<br>
+        <input type="radio" name="isMarried" value="no"> No<br>
+        <br>
+
+        <input type='submit'>
+    </form>
+
+    {% if res_success == True %}
+        <p>SUCCESS!</p>
+    {% endif %}
+</body>

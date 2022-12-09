@@ -44,8 +44,8 @@ class Model:
         return np.array(data).reshape(1, -1)
 
 
-res = [1, 20, 1, 1, 1, 3, 1, 70, 40, 2]
-data = np.array(res).reshape(1, -1)
-model = Model("forest_regression")
-result = model.predict(data)
-print(f'Possibility of having stroke: {result}')
+# res = [1, 20, 1, 1, 1, 3, 1, 70, 40, 2]
+# data = np.array(res).reshape(1, -1)
+# model = Model("forest_regression")
+# result = model.predict(data)
+# print(f'Possibility of having stroke: {result}')

@@ -30,3 +30,13 @@ input:focus {
     padding-left: 30px;
     padding-right: 30px;
 }
+
+.results-tab {
+    background-color: #F7F7F8;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-left: 50px;
+    margin-left: 30px;
+    padding-right: 50px;
+    border-radius: 10px;
+}

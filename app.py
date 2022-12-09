@@ -1,17 +1,11 @@
 from flask import Flask, request, render_template
 
 from model import Model
-import numpy as np
 
 app = Flask(__name__)
 
 
-@app.route("/")
-def home():
-    return "<p>Home Page!</p>"
-
-
-@app.route('/app', methods=['GET', 'POST'])
+@app.route("/", methods=['GET', 'POST'])
 def stroke_form():
     return render_template('stroke.html')
 
@@ -21,8 +15,7 @@ def result():
     if request.method == 'POST':
         model = Model("forest_regression")
         data = model.preprocess(request.form)
-        result = model.predict(data)
-        print(result)
+        result = 100 * model.predict(data)
         res_success = True
         return render_template('stroke.html',
                                res_success=res_success,

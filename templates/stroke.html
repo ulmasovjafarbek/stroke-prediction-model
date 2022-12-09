@@ -3,55 +3,56 @@
 <head>
     <title>Stroke Analysis | CS 216</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='form.css') }}">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 </head>
 <body>
     <h1>Stroke Prediction</h1>
     <div style="display: flex; justify-content: center;">
     <div style="display: flex; justify-content: center; float: left;">
     <form method="post" action="{{ url_for('result') }}" id="stroke_prediction">
-
+        <h3>Form for calculating chances of having stroke</h3>
         <div class="input">
         <label for="gender">What is your name?</label><br>
-        <input type="text" name="name"><br><br>
+        <input type="text" name="name" required><br><br>
         </div>
 
         <div class="input">
         <label for="gender">Who are you?</label><br>
-        <input type="radio" name="gender" value="1"> Male<br>
+        <input type="radio" name="gender" value="1" required> Male<br>
         <input type="radio" name="gender" value="2"> Female<br>
         <br>
         </div>
 
         <div class="input">
         <label for="isMarried">Are you married?</label><br>
-        <input type="radio" name="isMarried" value="1"> Yes<br>
+        <input type="radio" name="isMarried" value="1" required> Yes<br>
         <input type="radio" name="isMarried" value="0"> No<br>
         <br>
         </div>
 
         <div class="input">
         <label for="isHypertension">Do you have hypertension?</label><br>
-        <input type="radio" name="isHypertension" value="1">Yes<br>
+        <input type="radio" name="isHypertension" value="1" required>Yes<br>
         <input type="radio" name="isHypertension" value="0">No<br>
         <br>
         </div>
 
         <div class="input">
         <label for="hasHeartDisease">Have you had heart disease?</label><br>
-        <input type="radio" name="hasHeartDisease" value="1"> Yes<br>
+        <input type="radio" name="hasHeartDisease" value="1" required> Yes<br>
         <input type="radio" name="hasHeartDisease" value="0"> No<br>
         <br>
         </div>
 
         <div class="input">
         <label for="age">How old are you?</label><br>
-        <input type="number" name="age" min="0" max="120"><br>
+        <input type="number" name="age" min="0" max="120" required><br>
         <br>
         </div>
 
         <div class="input">
         <label for="workType">Where do you work?</label><br>
-        <input type="radio" name="workType" value="0" checked>Private sector<br>
+        <input type="radio" name="workType" value="0" required>Private sector<br>
         <input type="radio" name="workType" value="1">Self employed<br>
         <input type="radio" name="workType" value="3">Government sector<br>
             <input type="radio" name="workType" value="2">I have children<br>
@@ -61,28 +62,28 @@
 
         <div class="input">
         <label for="residenceType">What is your residence type?</label><br>
-        <input type="radio" name="residenceType" value="1" checked>Urban<br>
+        <input type="radio" name="residenceType" value="1" required>Urban<br>
         <input type="radio" name="residenceType" value="2">Rural<br>
         <br>
         </div>
 
         <div class="input">
         <label for="glucoseLevel">What is your blood sugar level?</label><br>
-        <input id="glucose" type="range" name="glucoseLevel" min="0" max="240" value="120">
+        <input id="glucose" type="range" name="glucoseLevel" min="0" max="240" value="120" required>
         <p id="glucose_level">120</p>
         <br>
         </div>
 
         <div class="input">
         <label for="bodyMassIndex">Indicate your body mass index:</label><br>
-        <input id="bmi" type="range" name="bodyMassIndex" min="0" max="60" value="20">
+        <input id="bmi" type="range" name="bodyMassIndex" min="0" max="60" value="20" required>
         <p id="bmi_level">20</p>
         <br>
         </div>
 
         <div class="input">
         <label for="smokeStatus">What is your smoking status?</label><br>
-        <input type="radio" name="smokeStatus" value="2" checked>Former smoker<br>
+        <input type="radio" name="smokeStatus" value="2" required>Former smoker<br>
         <input type="radio" name="smokeStatus" value="1">Smoker<br>
         <input type="radio" name="smokeStatus" value="0">Never smoked<br>
         <br>
@@ -94,11 +95,12 @@
     </form>
     </div>
 
-    <div style="float: left;">
-    <h2>Prediction results</h2>
+    <div style="float: left;" class="results-tab">
+    <h3>Prediction results</h3>
     {% if res_success == True %}
-        <h3>{{name}}, your chances of getting stroke is: </h3>
-        <h3>{{result}} percent</h3>
+        <h4>{{name}}, your chances of getting stroke is: </h4>
+        <h4 id="result-text">{{result}} percent</h4>
+        <a href="/">Try again!</a>
     {% endif %}
     </div>
     </div>

@@ -1,0 +1,32 @@
+body {
+    background-color: white;
+}
+
+form {
+    background-color: #F7F7F8;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-left: 50px;
+    padding-right: 50px;
+    border-radius: 10px;
+}
+
+h1 {
+    text-align: center;
+}
+
+input {
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+}
+
+input:focus {
+    border-color: #639;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+}
+
+.input {
+    padding-left: 30px;
+    padding-right: 30px;
+}

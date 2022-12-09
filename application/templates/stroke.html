@@ -2,69 +2,118 @@
 <html>
 <head>
     <title>Stroke Analysis | CS 216</title>
-    <style>
-        /* Add your CSS styles here */
-    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='form.css') }}">
 </head>
 <body>
     <h1>Stroke Prediction</h1>
+    <div style="display: flex; justify-content: center;">
+    <div style="display: flex; justify-content: center; float: left;">
     <form method="post" action="{{ url_for('result') }}" id="stroke_prediction">
-        <label for="gender">Gender:</label><br>
-        <input type="radio" name="gender" value="1" checked> Male<br>
+
+        <div class="input">
+        <label for="gender">What is your name?</label><br>
+        <input type="text" name="name"><br><br>
+        </div>
+
+        <div class="input">
+        <label for="gender">Who are you?</label><br>
+        <input type="radio" name="gender" value="1"> Male<br>
         <input type="radio" name="gender" value="2"> Female<br>
         <br>
+        </div>
 
-        <label for="age">Age:</label><br>
-        <input type="number" name="age" min="0" max="120"><br>
-        <br>
-
-        <label for="isHypertension">Is Hypertension:</label><br>
-        <input type="radio" name="isHypertension" value="1" checked>Yes<br>
-        <input type="radio" name="isHypertension" value="0">No<br>
-        <br>
-
-        <label for="hasHeartDisease">Has Heart Disease:</label><br>
-        <input type="radio" name="hasHeartDisease" value="1" checked> Yes<br>
-        <input type="radio" name="hasHeartDisease" value="0"> No<br>
-        <br>
-
-        <label for="isMarried">Is Married:</label><br>
-        <input type="radio" name="isMarried" value="1" checked> Yes<br>
+        <div class="input">
+        <label for="isMarried">Are you married?</label><br>
+        <input type="radio" name="isMarried" value="1"> Yes<br>
         <input type="radio" name="isMarried" value="0"> No<br>
         <br>
+        </div>
 
-        <label for="workType">Work type:</label><br>
-        <input type="radio" name="workType" value="0" checked>Private<br>
-        <input type="radio" name="workType" value="1">Self<br>
-        <input type="radio" name="workType" value="2">Children<br>
-        <input type="radio" name="workType" value="3">Government<br>
-        <input type="radio" name="workType" value="4">Never<br>
+        <div class="input">
+        <label for="isHypertension">Do you have hypertension?</label><br>
+        <input type="radio" name="isHypertension" value="1">Yes<br>
+        <input type="radio" name="isHypertension" value="0">No<br>
         <br>
+        </div>
 
-        <label for="residenceType">Residence type:</label><br>
+        <div class="input">
+        <label for="hasHeartDisease">Have you had heart disease?</label><br>
+        <input type="radio" name="hasHeartDisease" value="1"> Yes<br>
+        <input type="radio" name="hasHeartDisease" value="0"> No<br>
+        <br>
+        </div>
+
+        <div class="input">
+        <label for="age">How old are you?</label><br>
+        <input type="number" name="age" min="0" max="120"><br>
+        <br>
+        </div>
+
+        <div class="input">
+        <label for="workType">Where do you work?</label><br>
+        <input type="radio" name="workType" value="0" checked>Private sector<br>
+        <input type="radio" name="workType" value="1">Self employed<br>
+        <input type="radio" name="workType" value="3">Government sector<br>
+            <input type="radio" name="workType" value="2">I have children<br>
+        <input type="radio" name="workType" value="4">I have never worked<br>
+        <br>
+        </div>
+
+        <div class="input">
+        <label for="residenceType">What is your residence type?</label><br>
         <input type="radio" name="residenceType" value="1" checked>Urban<br>
         <input type="radio" name="residenceType" value="2">Rural<br>
         <br>
+        </div>
 
-        <label for="glucoseLevel">Glucose level:</label><br>
-        <input type="range" name="glucoseLevel" min="0" max="100"><br>
+        <div class="input">
+        <label for="glucoseLevel">What is your blood sugar level?</label><br>
+        <input id="glucose" type="range" name="glucoseLevel" min="0" max="240" value="120">
+        <p id="glucose_level">120</p>
         <br>
+        </div>
 
-        <label for="bodyMassIndex">BMI index:</label><br>
-        <input type="range" name="bodyMassIndex" min="0" max="100"><br>
+        <div class="input">
+        <label for="bodyMassIndex">Indicate your body mass index:</label><br>
+        <input id="bmi" type="range" name="bodyMassIndex" min="0" max="60" value="20">
+        <p id="bmi_level">20</p>
         <br>
+        </div>
 
-        <label for="smokeStatus">Smoke status:</label><br>
+        <div class="input">
+        <label for="smokeStatus">What is your smoking status?</label><br>
         <input type="radio" name="smokeStatus" value="2" checked>Former smoker<br>
         <input type="radio" name="smokeStatus" value="1">Smoker<br>
         <input type="radio" name="smokeStatus" value="0">Never smoked<br>
+        <br>
+        </div>
 
-        <input type='submit'>
+        <div class="input">
+        <input type='submit' value="Calculate">
+        </div>
     </form>
+    </div>
 
+    <div style="float: left;">
+    <h2>Prediction results</h2>
     {% if res_success == True %}
-        <p>SUCCESS!</p>
-        <p>{{gender}}</p>
-        <h1>Probability is: {{result}}</h1>
+        <h3>{{name}}, your chances of getting stroke is: </h3>
+        <h3>{{result}} percent</h3>
     {% endif %}
+    </div>
+    </div>
+
+    <script>
+        const glucose = document.getElementById('glucose');
+        const glucoseLevel = document.getElementById('glucose_level');
+        const bmi = document.getElementById('bmi');
+        const bmiLevel = document.getElementById('bmi_level');
+
+        glucose.oninput = function() {
+            glucoseLevel.innerHTML = glucose.value;
+        }
+        bmi.oninput = function() {
+            bmiLevel.innerHTML = bmi.value;
+        }
+    </script>
 </body>

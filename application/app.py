@@ -26,5 +26,6 @@ def result():
         res_success = True
         return render_template('stroke.html',
                                res_success=res_success,
+                               name=request.form['name'],
                                result=result)
     return "<p>Something Wrong!</p>"

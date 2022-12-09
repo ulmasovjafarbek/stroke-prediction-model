@@ -10,9 +10,8 @@
     <h1>Stroke Prediction</h1>
     <form method="post" action="{{ url_for('result') }}" id="stroke_prediction">
         <label for="gender">Gender:</label><br>
-        <input type="radio" name="gender" value="male" checked> Male<br>
-        <input type="radio" name="gender" value="female"> Female<br>
-        <input type="radio" name="gender" value="other"> Other<br>
+        <input type="radio" name="gender" value="1" checked> Male<br>
+        <input type="radio" name="gender" value="2"> Female<br>
         <br>
 
         <label for="age">Age:</label><br>
@@ -20,22 +19,52 @@
         <br>
 
         <label for="isHypertension">Is Hypertension:</label><br>
-        <input type="checkbox" name="isHypertension" value="yes"> Yes<br>
+        <input type="radio" name="isHypertension" value="1" checked>Yes<br>
+        <input type="radio" name="isHypertension" value="0">No<br>
         <br>
 
         <label for="hasHeartDisease">Has Heart Disease:</label><br>
-        <input type="checkbox" name="hasHeartDisease" value="yes"> Yes<br>
+        <input type="radio" name="hasHeartDisease" value="1" checked> Yes<br>
+        <input type="radio" name="hasHeartDisease" value="0"> No<br>
         <br>
 
         <label for="isMarried">Is Married:</label><br>
-        <input type="radio" name="isMarried" value="yes" checked> Yes<br>
-        <input type="radio" name="isMarried" value="no"> No<br>
+        <input type="radio" name="isMarried" value="1" checked> Yes<br>
+        <input type="radio" name="isMarried" value="0"> No<br>
         <br>
+
+        <label for="workType">Work type:</label><br>
+        <input type="radio" name="workType" value="0" checked>Private<br>
+        <input type="radio" name="workType" value="1">Self<br>
+        <input type="radio" name="workType" value="2">Children<br>
+        <input type="radio" name="workType" value="3">Government<br>
+        <input type="radio" name="workType" value="4">Never<br>
+        <br>
+
+        <label for="residenceType">Residence type:</label><br>
+        <input type="radio" name="residenceType" value="1" checked>Urban<br>
+        <input type="radio" name="residenceType" value="2">Rural<br>
+        <br>
+
+        <label for="glucoseLevel">Glucose level:</label><br>
+        <input type="range" name="glucoseLevel" min="0" max="100"><br>
+        <br>
+
+        <label for="bodyMassIndex">BMI index:</label><br>
+        <input type="range" name="bodyMassIndex" min="0" max="100"><br>
+        <br>
+
+        <label for="smokeStatus">Smoke status:</label><br>
+        <input type="radio" name="smokeStatus" value="2" checked>Former smoker<br>
+        <input type="radio" name="smokeStatus" value="1">Smoker<br>
+        <input type="radio" name="smokeStatus" value="0">Never smoked<br>
 
         <input type='submit'>
     </form>
 
     {% if res_success == True %}
         <p>SUCCESS!</p>
+        <p>{{gender}}</p>
+        <h1>Probability is: {{result}}</h1>
     {% endif %}
 </body>

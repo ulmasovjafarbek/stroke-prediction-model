@@ -1,5 +1,8 @@
 from flask import Flask, request, render_template
 
+from model import Model
+import numpy as np
+
 app = Flask(__name__)
 
 
@@ -16,20 +19,12 @@ def stroke_form():
 @app.route("/result", methods=['GET', 'POST'])
 def result():
     if request.method == 'POST':
-        gender = request.form['gender']
-        age = request.form['age']
-        # is_hypertension = request.form['isHypertension']
-        # has_heart_disease = request.form['hasHeartDisease']
-        # is_married = request.form['isMarried']
-        # work_type = request.form['workType']
-        # residence_type = request.form['residenceType']
-        # glucose_level = request.form['glucoseLevel']
-        # body_mass_index = request.form['bodyMassIndex']
-        # smoke_status = request.form['smokeStatus']
-
-        print(gender)
-        print(age)
-        res = "You have stroke"
+        model = Model("forest_regression")
+        data = model.preprocess(request.form)
+        result = model.predict(data)
+        print(result)
         res_success = True
-        return render_template('stroke.html', gender=gender, age=age, res_success=res_success)
+        return render_template('stroke.html',
+                               res_success=res_success,
+                               result=result)
     return "<p>Something Wrong!</p>"
